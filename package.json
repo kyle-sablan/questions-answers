@@ -1,0 +1,23 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lildb/questions-answers.git"
+  },
+  "author": "kyle-sablan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lildb/questions-answers/issues"
+  },
+  "homepage": "https://github.com/lildb/questions-answers#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
