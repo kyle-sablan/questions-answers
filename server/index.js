@@ -1,4 +1,7 @@
 const express = require('express');
+const questions = require('./Controllers/Questions.js');
+const answers = require('./Controllers/Answers.js');
+const answerPhotos = require('./Controllers/AnswerPhotos.js');
 
 const PORT = 8080;
 
@@ -7,6 +10,14 @@ const app = express();
 app.get('/', (req, res) => {
   res.status(200).send('HELLO WORLD!');
 });
+
+app.get('/qa/questions', questions.getQuestions);
+
+app.post('/qa/questions', questions.addQuestion);
+
+app.put('/qa/questions/:question_id/helpful', questions.markHelpful);
+
+app.put('/qa/questions/:question_id/report', questions.report);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`);
