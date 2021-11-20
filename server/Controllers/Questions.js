@@ -6,6 +6,7 @@
 module.exports = {
   // GET /qa/questions
   getQuestions: function(req, res) {
+    console.log(req.params);
     res.send('Hello from get questions');
   },
 
