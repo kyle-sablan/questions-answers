@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "server-dev": "nodemon server/index.js",
     "start": "node server/index.js"
   },
   "repository": {
@@ -18,6 +19,8 @@
   },
   "homepage": "https://github.com/lildb/questions-answers#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "pg": "^8.7.1",
+    "postgres": "^1.0.2"
   }
 }
