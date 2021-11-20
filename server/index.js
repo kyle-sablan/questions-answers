@@ -15,13 +15,13 @@ app.get('/', (req, res) => {
 });
 
 //change this to use query params req.query
-app.get('/qa/questions/:id/:page/:count', questions.getQuestions);
+app.get('/qa/questions/:id/', questions.GET_QUESTIONS);
 
-app.post('/qa/questions', questions.addQuestion);
+app.post('/qa/questions', questions.POST_QUESTION);
 
-app.put('/qa/questions/:question_id/helpful', questions.markHelpful);
+app.put('/qa/questions/:question_id/helpful', questions.PUT_HELPFUL);
 
-app.put('/qa/questions/:question_id/report', questions.report);
+app.put('/qa/questions/:question_id/report', questions.PUT_REPORT);
 
 app.get('/qa/questions/:question_id/answers/:page/:count', answers.getAnswers);
 
