@@ -1,13 +1,17 @@
-//question routes to set up
-//get questions for a product
-//add a question for a product
-//mark a question as helpful
-//report a question
+const model = require('../Models/Questions.js');
+
 module.exports = {
   // GET /qa/questions
   getQuestions: function(req, res) {
     console.log(req.params);
-    res.send('Hello from get questions');
+    model.readQuestions(req.params, (err, results) => {
+      if (err) {
+        console.log(err);
+        res.status(404).send('Error getting data');
+      } else {
+        res.status(200).json(results);
+      }
+    });
   },
 
   // POST /qa/questions

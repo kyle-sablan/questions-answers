@@ -7,10 +7,14 @@ const PORT = 8080;
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
   res.status(200).send('HELLO WORLD!');
 });
 
+//change this to use query params req.query
 app.get('/qa/questions/:id/:page/:count', questions.getQuestions);
 
 app.post('/qa/questions', questions.addQuestion);
