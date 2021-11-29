@@ -23,7 +23,7 @@ app.put('/qa/questions/:question_id/helpful', questions.PUT_HELPFUL);
 
 app.put('/qa/questions/:question_id/report', questions.PUT_REPORT);
 
-app.get('/qa/questions/:question_id/answers/:page/:count', answers.GET_ANSWERS);
+app.get('/qa/questions/:question_id/answers/', answers.GET_ANSWERS);
 
 app.post('/qa/questions/:question_id/answers', answers.POST_ANSWER);
 
