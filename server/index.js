@@ -23,13 +23,13 @@ app.put('/qa/questions/:question_id/helpful', questions.PUT_HELPFUL);
 
 app.put('/qa/questions/:question_id/report', questions.PUT_REPORT);
 
-app.get('/qa/questions/:question_id/answers/:page/:count', answers.getAnswers);
+app.get('/qa/questions/:question_id/answers/:page/:count', answers.GET_ANSWERS);
 
-app.post('/qa/questions/:question_id/answers', answers.addAnswer);
+app.post('/qa/questions/:question_id/answers', answers.POST_ANSWER);
 
-app.put('/qa/answers/:answer_id/helpful', answers.markHelpful);
+app.put('/qa/answers/:answer_id/helpful', answers.PUT_HELPFUL);
 
-app.put('/qa/answers/:answer_id/report', answers.report);
+app.put('/qa/answers/:answer_id/report', answers.PUT_REPORT);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`);
