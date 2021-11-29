@@ -1,7 +1,10 @@
 
 
-\timing
-
+-- \timing
+-- \c questions_and_answers
+DROP TABLE photos;
+DROP TABLE answers;
+DROP TABLE questions;
 -- SELECT * FROM questions
 --   WHERE product_id = 2;
 
@@ -12,8 +15,8 @@
 --   RETURNING id;
 
 -- USE SINGLE QUOTES FOR STRINGS / TEXT
-SELECT * FROM questions
-  WHERE asker_name = 'ks';
+-- SELECT * FROM questions
+--   WHERE asker_name = 'ks';
 
 
 -- SELECT MAX(id) FROM questions;

@@ -34,3 +34,5 @@ app.put('/qa/answers/:answer_id/report', answers.report);
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`);
 });
+
+module.exports = app;

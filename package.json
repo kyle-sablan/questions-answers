@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose --runInBand",
     "server-dev": "nodemon server/index.js",
     "start": "node server/index.js"
   },
@@ -19,8 +19,13 @@
   },
   "homepage": "https://github.com/lildb/questions-answers#readme",
   "dependencies": {
+    "axios": "^0.24.0",
     "express": "^4.17.1",
     "pg": "^8.7.1",
     "postgres": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1",
+    "supertest": "^6.1.6"
   }
 }
