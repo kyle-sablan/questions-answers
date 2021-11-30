@@ -2,7 +2,6 @@ const supertest = require('supertest');
 const app = require('../server/index.js');
 const pool = require('../database/index.js');
 const models = require('../server/Models/Questions.js');
-const axios = require('axios');
 
 
 const api = supertest(app);
@@ -22,7 +21,7 @@ beforeEach( async () => {
   await pool.query('DELETE FROM questions');
 });
 
-afterAll( done => {
+afterAll( (done) => {
   pool.end();
   done();
 });
@@ -41,6 +40,14 @@ test('should successfully add a question to the database', async () => {
   };
 
   await api.post('/qa/questions').send(questionToAdd).expect(201);
+});
+
+test('should successfully deny adding a question to the database if its not proper format', async () => {
+  const questionToAdd = {
+    product_id: 14,
+    body: 'this is a test'
+  };
+  await api.post('/qa/questions').send(questionToAdd).expect(400);
 });
 
 test('should successfully update question helpfulness', async () => {
@@ -75,7 +82,10 @@ describe('able to retrieve added questions from database', () => {
       name: 'ks',
       email: 'ks@net'
     };
+
+    console.log('before post');
     await api.post('/qa/questions').type('form').send(questionToAdd).set('Accept', 'application/json').expect(201);
+    console.log('after post');
   });
 
   test('should successfully retrieve questions from database', async () => {
