@@ -6,14 +6,11 @@ module.exports = {
     page = Number(page);
     count = Number(count);
     if (isNaN(page) || page === 0) {
-      console.log('ansdnjksadknsadk');
       page = 1;
     }
     if (isNaN(count) || count === 0) {
-      console.log('ansdnjksadasdafaasddknsadk');
       count = 5;
     }
-    console.log(page, count);
     pool.query('SELECT * FROM questions WHERE product_id = $1 ORDER BY id LIMIT $2 OFFSET $3', [id, count, page], (err, results) => {
       if (err) {
         console.log(err);
