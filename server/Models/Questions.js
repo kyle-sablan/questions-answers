@@ -11,16 +11,35 @@ module.exports = {
     if (isNaN(count) || count === 0) {
       count = 5;
     }
-    pool.query('SELECT * FROM questions WHERE product_id = $1 ORDER BY id LIMIT $2 OFFSET $3', [id, count, page], (err, results) => {
+    // pool.query('SELECT * FROM questions WHERE product_id = $1 ORDER BY id LIMIT $2 OFFSET $3', [id, count, page], (err, results) => {
+    //   if (err) {
+    //     console.log(err);
+    //     callback(err, null);
+    //   } else {
+    //     results.rows.forEach((question) => {
+    //       question.date_written = new Date(question.date_written * 1000);
+    //     });
+    //     callback(null, results.rows);
+    //   }
+    // });
+
+
+    pool.connect((err, client, release) => {
       if (err) {
-        console.log(err);
-        callback(err, null);
-      } else {
-        results.rows.forEach((question) => {
-          question.date_written = new Date(question.date_written * 1000);
-        });
-        callback(null, results.rows);
+        return console.error('Error acquiring client', err.stack)
       }
+      client.query('SELECT * FROM questions WHERE product_id = $1 ORDER BY id LIMIT $2 OFFSET $3', [id, count, page], (err, results) => {
+        client.release();
+        if (err) {
+          console.log(err);
+          callback(err, null);
+        } else {
+          results.rows.forEach((question) => {
+            question.date_written = new Date(question.date_written * 1000);
+          });
+          callback(null, results.rows);
+        }
+      });
     });
   },
 
