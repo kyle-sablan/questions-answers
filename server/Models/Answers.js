@@ -1,7 +1,7 @@
 const pool = require('../../database/index.js');
 
 module.exports = {
-  getAnswers: function ({ question_id }, callback) {
+  getAnswers: function ({ question_id }, { page, count }, callback) {
     // var queryStr = `
     //   SELECT answers.id, answers.body, answers.date_written, answers.answerer_name, answers.helpfulness, answers.reported,
     //     ARRAY_AGG ( JSON_BUILD_OBJECT ('id', photos.id, 'url', photos.url ) ) photo_urls
@@ -9,14 +9,24 @@ module.exports = {
     //       ON answers.question_id = $1 AND answers.id = photos.answer_id
     //       GROUP BY answers.id
     // `;
-
+    page = Number(page);
+    count = Number(count);
+    if (isNaN(page) || page === 0) {
+      page = 1;
+    }
+    if (isNaN(count) || count === 0) {
+      count = 5;
+    }
     var queryStr = `
       SELECT id, body, date_written, answerer_name, helpfulness, reported
         FROM answers
         WHERE question_id = $1
+        ORDER BY id
+        LIMIT $2
+        OFFSET $3
     `
 
-    pool.query(queryStr, [question_id], (err, results) => {
+    pool.query(queryStr, [question_id, count, page], (err, results) => {
       if (err) {
         callback(err, null);
       } else {

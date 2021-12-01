@@ -3,10 +3,7 @@ const model = require('../Models/Answers.js');
 module.exports = {
   // GET /qa/questions/:question_id/answers
   GET_ANSWERS: function(req, res) {
-    console.log(req.params);
-    console.log(req.query);
-
-    model.getAnswers(req.params, (err, results) => {
+    model.getAnswers(req.params, req.query, (err, results) => {
       if (err) {
         console.log(err);
         res.status(400).send('Error retrieving answers');
