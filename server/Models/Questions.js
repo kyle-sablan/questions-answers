@@ -31,7 +31,6 @@ module.exports = {
       client.query('SELECT * FROM questions WHERE product_id = $1 ORDER BY id LIMIT $2 OFFSET $3', [id, count, page], (err, results) => {
         client.release();
         if (err) {
-          console.log(err);
           callback(err, null);
         } else {
           results.rows.forEach((question) => {

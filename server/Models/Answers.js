@@ -60,7 +60,6 @@ module.exports = {
     // `;
 
     var queryParams = [question_id, answers_body, time, answerer_name, answerer_email];
-    console.log(queryParams);
     pool.query(queryStr, queryParams, (err) => {
       if (err) {
         console.log(err);

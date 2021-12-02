@@ -5,7 +5,6 @@ module.exports = {
   GET_ANSWERS: function(req, res) {
     model.getAnswers(req.params, req.query, (err, results) => {
       if (err) {
-        console.log(err);
         res.status(400).send('Error retrieving answers');
       } else {
         res.status(200).json(results);
@@ -15,7 +14,6 @@ module.exports = {
 
   // POST /qa/questions/:question_id
   POST_ANSWER: function(req, res) {
-    console.log(req.body);
     model.addAnswer(req.params, req.body, (err) => {
       if (err) {
         console.log(err);
