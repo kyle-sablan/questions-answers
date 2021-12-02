@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const questions = require('./Controllers/Questions.js');
 const answers = require('./Controllers/Answers.js');
@@ -30,6 +31,12 @@ app.post('/qa/questions/:question_id/answers', answers.POST_ANSWER);
 app.put('/qa/answers/:answer_id/helpful', answers.PUT_HELPFUL);
 
 app.put('/qa/answers/:answer_id/report', answers.PUT_REPORT);
+
+
+//loader io
+app.get(`/${process.env.LOADERIO}/`, (req, res) => {
+  res.send(process.env.LOADERIO);
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}...`);
