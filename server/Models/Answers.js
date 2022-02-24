@@ -24,7 +24,7 @@ module.exports = {
     // var queryStr = `
     //   SELECT answers.id, answers.body, answers.date_written, answers.answerer_name, answers.helpfulness, answers.reported,
     //     ARRAY_AGG ( JSON_BUILD_OBJECT ('id', photos.id, 'url', photos.url ) ) photo_urls
-    //     FROM answers left join photos
+    //     FROM answers join photos
     //     ON answers.question_id = $1 AND answers.id = photos.answer_id
     //     GROUP BY answers.id
     //     LIMIT $2
@@ -37,7 +37,9 @@ module.exports = {
         SELECT JSON_AGG(JSON_BUILD_OBJECT('id', photos.id, 'url', photos.url)) AS photo_urls
         FROM photos
         WHERE photos.answer_id = a.id
-      ) photos ON a.question_id = $1
+      ) photos ON true
+      WHERE a.question_id = $1
+      ORDER BY a.question_id
       LIMIT $2
       OFFSET $3
     `;
